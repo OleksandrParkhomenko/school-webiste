@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css">
+</head>
+<body>
+<div th:fragment="header">
+    <nav class="navbar is-primary md-2">
+        <div class="navbar-brand is-warning">
+            <a class="navbar-item is-family-code is-size-5 has-text-weight-bold" th:href="@{|/home|}">Pines High School</a>
+        </div>
+
+        <div class="navbar-menu">
+            <div class="navbar-start">
+                <a class="navbar-item" href="">
+                    News
+                </a>
+                <a class="navbar-item" href="">
+                    Create post
+                    <i class="fas fa-plus-circle ml-1"></i>
+                </a>
+                <a class="navbar-item" href="">
+                    Stuff
+                </a>
+                <a class="navbar-item" href="">
+                    For students
+                </a>
+            </div>
+        </div>
+
+        <div class="navbar-end">
+            <a class="navbar-item" href="">
+                Profile
+            </a>
+            <a class="navbar-item" href="">
+                Log In/Log Out
+            </a>
+        </div>
+    </nav>
+</div>
+</body>
+</html>
