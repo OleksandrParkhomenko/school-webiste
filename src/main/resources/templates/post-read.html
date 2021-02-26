@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
+    <title>Posts List</title>
+</head>
+<body>
+<div th:replace="header :: header"></div>
+<div class="column is-three-fifths is-offset-one-fifth">
+    <section class="hero is-small">
+        <div class="hero-body column">
+            <p class="title" >
+                <span class="mr-4" th:text="${post.getTitle()}">
+                </span>
+                <a th:href="@{|/posts/${post.getId()}/update|}"><i class="fas fa-pen-square has-text-primary"></i></a>
+                <a th:href="@{|/posts/${post.getId()}/delete|}"><i class="fas fa-trash has-text-grey-light"></i></a>
+            </p>
+            <p class="subtitle">
+                By
+                <span th:text="${post.getAuthor()}"></span>
+            </p>
+        </div>
+    </section>
+    <p th:text="${post.getText()}"></p>
+</div>
+</body>
+</html>

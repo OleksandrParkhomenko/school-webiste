@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
+    <title>Posts List</title>
+</head>
+<body>
+<div th:replace="header :: header"></div>
+<div class="column is-three-fifths is-offset-one-fifth">
+    <form th:action="@{/posts/create}" th:object="${post}" method="POST">
+        <input type="hidden" name="id" th:value="*{id}">
+        <div class="field is-horizontal">
+            <div class="field-label is-normal">
+                <label class="label">Author</label>
+            </div>
+            <div class="field-body">
+                <div class="field">
+                    <p class="control is-expanded has-icons-left">
+                        <input class="input is-static" type="text" placeholder="Name" th:field="*{author}" readonly>
+                        <span class="icon is-small is-left">
+                         <i class="fas fa-user"></i>
+                    </span>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="field is-horizontal">
+            <div class="field-label is-normal">
+                <label class="label">Title</label>
+            </div>
+            <div class="field-body">
+                <div class="field">
+                    <div class="control">
+                        <input class="input is-danger" type="text" placeholder="Enter the title of your post"
+                               th:field="*{title}">
+                    </div>
+                    <p class="help is-danger">
+                        This field is required
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="field is-horizontal">
+            <div class="field-label is-normal">
+                <label class="label">Text</label>
+            </div>
+            <div class="field-body">
+                <div class="field">
+                    <div class="control">
+                        <textarea class="textarea" placeholder="What do you want to tell people?"
+                                  th:field="*{text}"></textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="field is-horizontal">
+            <div class="field-label">
+                <!-- Left empty for spacing -->
+            </div>
+            <div class="field-body">
+                <div class="field">
+                    <div class="control">
+                        <button class="button is-primary" type="submit">
+                            Update
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </form>
+</div>
+</body>
+</html>
