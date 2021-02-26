@@ -11,7 +11,7 @@ public class Comment {
 
     @ManyToOne
     @JoinColumn(name = "post_id", nullable = false)
-    private long post;
+    private Post post;
 
     @Column(name = "author", nullable = false)
     private String author;
@@ -28,11 +28,11 @@ public class Comment {
         this.id = id;
     }
 
-    public long getPost() {
+    public Post getPost() {
         return post;
     }
 
-    public void setPost(long post) {
+    public void setPost(Post post) {
         this.post = post;
     }
 

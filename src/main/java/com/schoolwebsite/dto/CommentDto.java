@@ -1,13 +1,14 @@
 package com.schoolwebsite.dto;
 
+import com.schoolwebsite.model.Post;
+
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
 public class CommentDto {
     private long id;
 
-    @NotNull
-    private long postId;
+    private Post postId;
 
     @NotBlank
     private String author;
@@ -16,7 +17,7 @@ public class CommentDto {
     @NotNull
     private String text;
 
-    public CommentDto(long id, @NotNull long postId, @NotBlank String author, @NotNull String text) {
+    public CommentDto(long id, Post postId, @NotBlank String author, @NotNull String text) {
         this.id = id;
         this.postId = postId;
         this.author = author;
@@ -31,11 +32,11 @@ public class CommentDto {
         this.id = id;
     }
 
-    public long getPostId() {
+    public Post getPostId() {
         return postId;
     }
 
-    public void setPostId(long postId) {
+    public void setPostId(Post postId) {
         this.postId = postId;
     }
 
