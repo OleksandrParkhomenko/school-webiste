@@ -1,6 +1,7 @@
 package com.schoolwebsite.model;
 
 import javax.persistence.*;
+import java.util.List;
 
 
 @Entity
@@ -15,6 +16,9 @@ public class Post {
 
     @Column(name = "author", nullable = false)
     private String author;
+
+    @OneToMany(mappedBy = "post", cascade = CascadeType.REMOVE)
+    private List<Comment> comments;
 
     @Lob
     @Column(name = "text", nullable = false)
@@ -45,4 +49,8 @@ public class Post {
     public String getText() { return text; }
 
     public void setText(String text) { this.text = text; }
+
+    public List<Comment> getComments() { return comments; }
+
+    public void setComments(List<Comment> comments) { this.comments = comments; }
 }
