@@ -11,38 +11,107 @@
 </head>
 <body>
 <div th:replace="header :: header"></div>
-<div class="column is-three-fifths is-offset-one-fifth">
-    <section class="hero is-small">
-        <div class="hero-body column">
-            <p class="title" >
+<div class="box if-fullheight has-background-primary-light">
+    <div class="column is-three-fifths is-offset-one-fifth has-background-white">
+        <!-- Post details -->
+        <div>
+            <section class="hero is-small">
+                <div class="hero-body column">
+                    <p class="title">
                 <span class="mr-4" th:text="${post.getTitle()}">
                 </span>
-                <a th:href="@{|/posts/${post.getId()}/update|}"><i class="fas fa-edit has-text-primary"></i></a>
-                <a class="modal-show"><i class="fas fa-trash has-text-grey-light"></i></a>
-            </p>
-            <p class="subtitle">
-                By
-                <span th:text="${post.getAuthor()}"></span>
-            </p>
-        </div>
-    </section>
-    <p th:text="${post.getText()}"></p>
-</div>
-<div>
-    <div class="modal">
-        <div class="modal-background"></div>
-        <div class="modal-card">
-            <header class="modal-card-head">
-            </header>
-            <section class="modal-card-body">
-                <h2 class="modal-card-title">
-                    Are you sure you want to delete "<span th:text="${post.getTitle()}"></span>"?
-                </h2>
+                        <a th:href="@{|/posts/${post.getId()}/update|}"><i class="fas fa-edit has-text-primary"></i></a>
+                        <a class="modal-show"><i class="fas fa-trash has-text-grey-light"></i></a>
+                    </p>
+                    <p class="subtitle">
+                        By
+                        <span th:text="${post.getAuthor()}"></span>
+                    </p>
+                </div>
             </section>
-            <footer class="modal-card-foot">
-                <a class="button is-danger is-outlined" th:href="@{|/posts/${post.getId()}/delete|}">Yes</a>
-                <button class="button is-success is-outlined" id="modal-close">Cancel</button>
-            </footer>
+            <p th:text="${post.getText()}"></p>
+            <hr>
+        </div>
+        <!-- Comments -->
+        <div class="section">
+            <ul th:each="comment, iStat: ${post.getComments()}">
+                <li>
+                    <article class="media mb-2">
+                        <div class="media-content">
+                            <div class="content">
+                                <p>
+                                    <strong th:text="${comment.getAuthor()}">John Smith</strong>
+                                    <small>@johnsmith</small> <small>31m</small>
+                                    <br>
+                                    <span th:text="${comment.getText()}"></span>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="media-right">
+                            <a><i class="fas fa-trash has-text-grey-light"></i></a>
+                        </div>
+                    </article>
+                </li>
+            </ul>
+
+            <!-- Comment form -->
+            <form th:action="@{|/comments/post/${post.getId()}/create|}" th:object="${comment}" method="POST">
+                <input class="input" type="hidden" placeholder="Id" th:field="*{post}">
+                <div class="field is-horizontal">
+                    <div class="field-body">
+                        <div class="field">
+                            <p class="control has-icons-left">
+                                <input class="input" type="text" placeholder="Name" th:field="*{author}">
+                                <span class="icon is-small is-left">
+                                        <i class="fas fa-user"></i>
+                                    </span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="field is-horizontal">
+                    <div class="field-body">
+                        <div class="field">
+                            <p class="control is-expanded ">
+                            <textarea class="textarea" placeholder="Add a comment..."
+                                      th:field="*{text}"></textarea>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="field is-horizontal">
+                    <div class="field-body">
+                        <nav class="level">
+                            <div class="level-left">
+                                <div class="level-item">
+                                    <button class="button is-info" type="submit">Comment</button>
+                                </div>
+                            </div>
+                        </nav>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+    <!-- Modal -->
+    <div>
+        <div class="modal">
+            <div class="modal-background"></div>
+            <div class="modal-card">
+                <header class="modal-card-head">
+                </header>
+                <section class="modal-card-body">
+                    <h2 class="modal-card-title">
+                        Are you sure you want to delete "<span th:text="${post.getTitle()}"></span>"?
+                    </h2>
+                </section>
+                <footer class="modal-card-foot">
+                    <a class="button is-danger is-outlined" th:href="@{|/posts/${post.getId()}/delete|}">Yes</a>
+                    <button class="button is-success is-outlined" id="modal-close">Cancel</button>
+                </footer>
+            </div>
         </div>
     </div>
 </div>
@@ -55,5 +124,17 @@ $("#modal-close").click(function() {
 $(".modal-show").click(function() {
    $(".modal").addClass("is-active");
 });
+
+
+
+
+
+
+
+
+
+
+
+
 </script>
 </html>

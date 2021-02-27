@@ -1,7 +1,9 @@
 package com.schoolwebsite.controller;
 
+import com.schoolwebsite.dto.CommentDto;
 import com.schoolwebsite.dto.PostDto;
 import com.schoolwebsite.dto.PostTransformer;
+import com.schoolwebsite.model.Comment;
 import com.schoolwebsite.model.Post;
 import com.schoolwebsite.service.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,6 +32,9 @@ public class PostController {
         Post post = postService.readById(id);
         model.addAttribute("post", post);
         model.addAttribute("title", String.format("Post #%d", id));
+        Comment comment = new Comment();
+        comment.setPost(post);
+        model.addAttribute("comment", comment);
         return "post-read";
     }
 
